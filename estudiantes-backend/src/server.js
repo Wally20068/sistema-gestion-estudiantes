@@ -10,20 +10,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Rutas principales de estudiantes
+// ENDPOINTS PRINCIPALES DE LA API
 app.use("/estudiantes", estudiantesRoutes);
 
-// Ruta raíz solo para información (Render / navegador)
+// OPCIONAL: MENSAJE EN LA RAÍZ ( / )
 app.get("/", (req, res) => {
   res.json({
-    mensaje: "API de Sistema de Gestión de Estudiantes (BRAVO AVILA ADRIAN)",
-    descripcion: "Backend Node.js + Express + MySQL desplegado en Render.",
-    endpoints: {
+    mensaje: "API de Sistema de Gestión de Estudiantes desplegada en Render",
+    autor: "BRAVO AVILA ADRIAN ALEJANDRO",
+    ejemplos: {
       listar: "/estudiantes",
-      crear: "/estudiantes",
-      detalle: "/estudiantes/:id",
-      actualizar: "/estudiantes/:id",
-      eliminar: "/estudiantes/:id",
       filtroPorCarrera: "/estudiantes?carrera=Software",
       promedioGeneral: "/estudiantes/promedio-general"
     }
@@ -32,5 +28,5 @@ app.get("/", (req, res) => {
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
-  console.log(`Servidor en http://localhost:${port}`);
+  console.log(`Servidor en puerto ${port}`);
 });
