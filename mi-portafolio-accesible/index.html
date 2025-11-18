@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portafolio – Adrian Bravo</title>
+  <meta name="description" content="Portafolio personal de Adrian Bravo, estudiante de Ingeniería en Sistemas en la UCACUE." />
+  <link rel="icon" href='data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="%23111827"/><text x="12" y="42" font-size="30" fill="%23ffffff" font-family="Arial">A</text></svg>'>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <button id="menuButton" class="menu-button" aria-expanded="false" aria-controls="siteNav" aria-label="Abrir menú de navegación">☰</button>
+      <a href="#" class="logo" aria-label="Inicio">Adrian Bravo</a>
+    </div>
+    <nav id="siteNav" class="site-nav" aria-label="Navegación principal">
+      <ul role="list">
+        <li><a href="#presentacion" aria-current="page">Presentación</a></li>
+        <li><a href="#experiencia">Experiencia/Portafolio</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido" class="site-main" role="main">
+    <!-- PRESENTACIÓN -->
+    <section id="presentacion" class="section intro" aria-labelledby="titulo-presentacion">
+      <div class="intro-grid">
+        <div class="intro-media">
+          <!-- puedes reemplazar esta imagen por una tuya en /img -->
+          <img src="https://via.placeholder.com/320x320?text=Adrian" alt="Foto de Adrian Bravo" width="320" height="320" />
+        </div>
+        <div class="intro-text">
+          <h1 id="titulo-presentacion">¡Hola! Soy <span class="accent">Adrian Bravo</span></h1>
+          <p>Soy estudiante de Ingeniería en Sistemas en la Universidad Católica de Cuenca. Me interesa el desarrollo web, las APIs y los proyectos IoT sencillos.</p>
+          <ul class="badges" role="list">
+            <li>HTML5</li><li>CSS Grid</li><li>JavaScript</li><li>Accesibilidad</li>
+          </ul>
+          <a class="btn" href="#contacto">Hablemos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIA / PORTAFOLIO -->
+    <section id="experiencia" class="section portfolio" aria-labelledby="titulo-experiencia">
+      <h2 id="titulo-experiencia">Experiencia / Portafolio</h2>
+      <div class="cards" role="list">
+
+        <!-- CARD 1 -->
+        <article class="card" role="article" aria-labelledby="p1-title">
+          <div class="card-media card-gastro" role="img" aria-label="Proyecto de recomendación de restaurantes"></div>
+          <div class="card-body">
+            <h3 id="p1-title">Proyecto 1: GastroCuenca</h3>
+            <p>Sistema de recomendación de restaurantes en Cuenca desarrollado con MySQL y JavaFX.</p>
+            <button class="btn-secondary card-toggle" type="button" aria-expanded="false" aria-controls="p1-detalle">Ver más</button>
+          </div>
+          <div id="p1-detalle" class="card-detail" hidden>
+            <p>Permite registrar restaurantes, categorías y puntuaciones. Conexión a MySQL y UI sencilla.</p>
+          </div>
+        </article>
+
+        <!-- CARD 2 -->
+        <article class="card" role="article" aria-labelledby="p2-title">
+          <div class="card-media card-api" role="img" aria-label="API de noticias con Node y Express"></div>
+          <div class="card-body">
+            <h3 id="p2-title">Proyecto 2: API de Noticias</h3>
+            <p>API REST creada con Node.js y Express que gestiona noticias deportivas con autenticación JWT.</p>
+            <button class="btn-secondary card-toggle" type="button" aria-expanded="false" aria-controls="p2-detalle">Ver más</button>
+          </div>
+          <div id="p2-detalle" class="card-detail" hidden>
+            <p>Incluye rutas CRUD, protección de rutas y validación de datos. Pensada para ser consumida por un frontend.</p>
+          </div>
+        </article>
+
+        <!-- CARD 3 -->
+        <article class="card" role="article" aria-labelledby="p3-title">
+          <div class="card-media card-iot" role="img" aria-label="Proyecto de casa inteligente IoT"></div>
+          <div class="card-body">
+            <h3 id="p3-title">Proyecto 3: SmartHome IoT</h3>
+            <p>Prototipo con ESP32 y sensores, controlado desde una interfaz.</p>
+            <button class="btn-secondary card-toggle" type="button" aria-expanded="false" aria-controls="p3-detalle">Ver más</button>
+          </div>
+          <div id="p3-detalle" class="card-detail" hidden>
+            <p>Control de luces, lectura de sensores y envío de datos. Proyecto demostrativo.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section contact" aria-labelledby="titulo-contacto">
+      <h2 id="titulo-contacto">Contacto</h2>
+      <p>Puedes escribirme a <a href="mailto:adrian.brao@est.ucacue.edu.ec">adrian.brao@est.ucacue.edu.ec</a></p>
+      <ul class="social" role="list">
+        <li><a href="https://github.com/Wally20068" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com" target="_blank">LinkedIn</a></li>
+      </ul>
+
+      <form class="contact-form" aria-describedby="ayuda-contacto">
+        <p id="ayuda-contacto" class="muted">Los campos marcados con * son obligatorios.</p>
+        <label for="nombre">Nombre *</label>
+        <input id="nombre" name="nombre" type="text" required />
+        <label for="correo">Correo *</label>
+        <input id="correo" name="correo" type="email" required />
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+        <button type="submit" class="btn">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>© <span id="year"></span> Adrian Bravo. Portafolio accesible.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

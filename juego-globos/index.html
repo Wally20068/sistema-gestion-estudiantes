@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Juego - Revienta los Globos</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #87ceeb, #ffffff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      text-align: center;
+      color: #333;
+    }
+
+    .panel {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .panel span {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    #startBtn {
+      padding: 8px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background-color: #ff9800;
+      color: white;
+    }
+
+    #startBtn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    #gameArea {
+      position: relative;
+      width: 800px;
+      max-width: 95vw;
+      height: 500px;
+      border: 3px solid #333;
+      border-radius: 10px;
+      overflow: hidden;
+      background: linear-gradient(to top, #a5d6a7, #c8e6c9);
+    }
+
+    .balloon {
+      position: absolute;
+      width: 50px;
+      height: 70px;
+      border-radius: 50% 50% 50% 50%;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      animation: floatUp 6s linear forwards;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      user-select: none;
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 30px;
+      background-color: #666;
+      top: 65px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100%);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120%);
+        opacity: 0;
+      }
+    }
+
+    #message {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #d32f2f;
+      text-align: center;
+      min-height: 24px;
+    }
+
+    .small-text {
+      margin-top: 10px;
+      font-size: 14px;
+      text-align: center;
+      color: #444;
+      max-width: 800px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎈 Juego: Revienta los Globos 🎈</h1>
+
+  <div class="panel">
+    <span>Puntos: <span id="score">0</span></span>
+    <span>Tiempo: <span id="time">60</span> s</span>
+    <button id="startBtn">Iniciar juego</button>
+  </div>
+
+  <div id="gameArea"></div>
+
+  <div id="message"></div>
+
+  <p class="small-text">
+    Instrucciones: Presiona <strong>“Iniciar juego”</strong> y haz clic en tantos globos como puedas antes de que se acabe el tiempo.
+    Puedes dejar que los niños compitan por quién hace más puntos.
+  </p>
+
+  <script>
+    const gameArea = document.getElementById('gameArea');
+    const scoreSpan = document.getElementById('score');
+    const timeSpan = document.getElementById('time');
+    const startBtn = document.getElementById('startBtn');
+    const message = document.getElementById('message');
+
+    let score = 0;
+    let timeLeft = 60;
+    let gameInterval = null;
+    let balloonInterval = null;
+    let gameRunning = false;
+
+    const colors = ['#e91e63', '#2196f3', '#4caf50', '#ff5722', '#9c27b0', '#ffeb3b'];
+
+    function startGame() {
+      score = 0;
+      timeLeft = 60;
+      scoreSpan.textContent = score;
+      timeSpan.textContent = timeLeft;
+      message.textContent = '';
+      gameRunning = true;
+      startBtn.disabled = true;
+
+      gameArea.innerHTML = '';
+
+      gameInterval = setInterval(() => {
+        timeLeft--;
+        timeSpan.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+          endGame();
+        }
+      }, 1000);
+
+      balloonInterval = setInterval(createBalloon, 700);
+    }
+
+    function endGame() {
+      gameRunning = false;
+      clearInterval(gameInterval);
+      clearInterval(balloonInterval);
+      startBtn.disabled = false;
+
+      const balloons = document.querySelectorAll('.balloon');
+      balloons.forEach(b => b.remove());
+
+      message.textContent = `¡Tiempo terminado! Hiciste ${score} puntos. 🎉`;
+    }
+
+    function createBalloon() {
+      if (!gameRunning) return;
+
+      const balloon = document.createElement('div');
+      balloon.classList.add('balloon');
+
+      const areaWidth = gameArea.clientWidth;
+      const randomX = Math.random() * (areaWidth - 60);
+      balloon.style.left = `${randomX}px`;
+
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      balloon.style.backgroundColor = color;
+
+      const points = Math.random() < 0.2 ? 3 : 1;
+      balloon.textContent = points;
+
+      balloon.addEventListener('click', () => {
+        if (!gameRunning) return;
+        score += points;
+        scoreSpan.textContent = score;
+        balloon.style.transition = 'transform 0.1s, opacity 0.1s';
+        balloon.style.transform = 'scale(1.3)';
+        balloon.style.opacity = '0';
+        setTimeout(() => balloon.remove(), 80);
+      });
+
+      balloon.addEventListener('animationend', () => {
+        balloon.remove();
+      });
+
+      gameArea.appendChild(balloon);
+    }
+
+    startBtn.addEventListener('click', startGame);
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+﻿{
+  "info": {
+    "name": "API Estudiantes",
+    "_postman_id": "auto-generated-ucacue",
+    "description": "Colección para probar el CRUD de estudiantes en Express",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET - Listar estudiantes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/estudiantes",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["estudiantes"]
+        }
+      }
+    },
+    {
+      "name": "POST - Crear estudiante",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"María Quinde\",\n  \"carrera\": \"Software\",\n  \"email\": \"maria@ucacue.edu.ec\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/estudiantes",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["estudiantes"]
+        }
+      }
+    },
+    {
+      "name": "PUT - Actualizar estudiante (id=1)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"carrera\": \"Telecomunicaciones\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/estudiantes/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["estudiantes", "1"]
+        }
+      }
+    },
+    {
+      "name": "DELETE - Eliminar estudiante (id=2)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/estudiantes/2",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["estudiantes", "2"]
+        }
+      }
+    }
+  ]
+}

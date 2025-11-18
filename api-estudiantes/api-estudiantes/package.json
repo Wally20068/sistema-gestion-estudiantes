@@ -1,0 +1,16 @@
+﻿{
+  "name": "api-estudiantes",
+  "version": "1.0.0",
+  "description": "API CRUD de estudiantes con Express",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "UCACUE - José Cordero",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
